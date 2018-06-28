@@ -12,5 +12,8 @@
 */
 
 Route::get('/', function () {
+    //test event broadcast
+    event(new \App\Events\MessageNotificationEvent());
+
     return view('welcome');
 });
