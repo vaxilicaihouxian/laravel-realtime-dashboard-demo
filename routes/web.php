@@ -12,8 +12,10 @@
 */
 
 Route::get('/', function () {
+    return view('dashboard');
+});
+Route::get('/push-message',function(){
     //test event broadcast
     event(new \App\Events\MessageNotificationEvent());
-
-    return view('welcome');
+    return 'push a message!';
 });

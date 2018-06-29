@@ -14,6 +14,8 @@ class MessageNotificationEvent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
+    public $message;
+
     /**
      * Create a new event instance.
      *
@@ -22,6 +24,7 @@ class MessageNotificationEvent implements ShouldBroadcast
     public function __construct()
     {
         //
+        $this->message = 'laravel-realtime-dashboard-demo';
     }
 
     /**
