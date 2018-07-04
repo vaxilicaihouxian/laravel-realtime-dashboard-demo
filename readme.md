@@ -66,7 +66,7 @@ php7,laravel-framework,mysql,redis,socket.io
 
 - 编写审核api
 
-- 建立request model的事件监听，发送通知
+- 建立 article model的事件监听，发送通知
 
 - 编写 “提交” 通知
 
