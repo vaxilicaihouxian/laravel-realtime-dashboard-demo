@@ -24,5 +24,6 @@ redis.on('pmessage', function(subscribed, channel, data) {
     data = JSON.parse(data);
     console.log(new Date);
     console.log(data);
+    console.log(channel);
     io.emit(channel + ':' + data.event, data.data);
 });
