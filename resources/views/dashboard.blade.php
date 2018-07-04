@@ -11,6 +11,7 @@
 </head>
 <body>
     <div id="app">
+        <nav-tile></nav-tile>
         <example-component></example-component>
     </div>
     <script src="{{ asset('js/app.js') }}"></script>
