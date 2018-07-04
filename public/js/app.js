@@ -55938,7 +55938,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         var userId = 1;
         var channel = 'private-App.User.' + userId + ':Illuminate\\Notifications\\Events\\BroadcastNotificationCreated';
         socket.on(channel, function (data) {
-            _this.notifications.unshift(data);
+            console.log(data);
+            _this.notifications.unshift({ data: data });
             _this.totalNum = 1 + _this.totalNum;
             console.log('add new notification');
         });

@@ -20,7 +20,8 @@
             let userId = 1;
             let channel = `private-App.User.${userId}:Illuminate\\Notifications\\Events\\BroadcastNotificationCreated`;
             socket.on(channel,(data)=>{
-                this.notifications.unshift(data);
+                console.log(data);
+                this.notifications.unshift({data});
                 this.totalNum = 1 + this.totalNum;
                 console.log('add new notification');
             })
