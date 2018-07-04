@@ -14,8 +14,10 @@
         <nav-tile :notifications="{{ getUnreadNotifications() }}"
                   :count-notifications="{{ countUnreadNotifications() }}"
                   :user="{{ Auth::check() ? Auth::user()->toJson() : false }}"></nav-tile>
+        <main class="py-4">
         <example-component></example-component>
         <flash-message></flash-message>
+        </main>
     </div>
     <script src="{{ asset('js/app.js') }}"></script>
 </body>

@@ -56194,7 +56194,7 @@ var render = function() {
   return _c("div", { staticClass: "container" }, [
     _c(
       "nav",
-      { staticClass: "navbar navbar-expand-lg navbar-light bg-light" },
+      { staticClass: "navbar navbar-expand-lg navbar-light navbar-laravel" },
       [
         _vm._m(0),
         _vm._v(" "),
