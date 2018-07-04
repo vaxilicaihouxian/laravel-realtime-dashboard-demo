@@ -56,6 +56,8 @@ php7,laravel-framework,mysql,redis,socket.io
 
 - 编写审核页面
 
+- 编写审核进度面板
+
 - 编写提交api
 
 - 编写审核api
