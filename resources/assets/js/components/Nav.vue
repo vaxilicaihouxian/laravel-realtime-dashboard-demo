@@ -8,7 +8,7 @@
 
         <div class="collapse navbar-collapse" id="navbarDashboard">
             <div class="ml-auto">
-                <notification-box></notification-box>
+                <notification-box :data="notifications" :total="countNotifications"></notification-box>
             </div>
         </div>
     </nav>
@@ -19,6 +19,7 @@
     import NotificationBox from './NotificationBox.vue';
     export default {
         name:"Nav",
+        props:['notifications','countNotifications'],
         components:{
             NotificationBox
         }

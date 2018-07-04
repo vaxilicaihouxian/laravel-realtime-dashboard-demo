@@ -5,14 +5,24 @@
             <span v-if="totalNum > 0" class="badge badge-light badge-pill">{{ totalNum }}</span>
         </button>
         <div class="dropdown-menu" aria-labelledby="notificationBoxMenuButton">
-            <a v-for=" notification in notifications" class="dropdown-item" href="#">{{ notification.message }}</a>
+            <a v-for=" notification in notifications" class="dropdown-item" href="#">{{ notification.data.message }}</a>
         </div>
     </div>
 </template>
 <script>
+    import io from 'socket.io-client';
     export default {
         props:['total','data'],
         name:'NotificationBox',
+        mounted(){
+            let socket = io('http://localhost:8099');
+            let channel = '';
+            socket.on(channel,(data)=>{
+                this.notifications.unshift(data);
+                this.totalNum = 1 + this.totalNum;
+                console.log('add new notification');
+            })
+        },
         data(){
             return {
                 notifications: this.data,

@@ -50622,8 +50622,6 @@ module.exports = function normalizeComponent (
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_socket_io_client__ = __webpack_require__(62);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_socket_io_client___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_socket_io_client__);
 //
 //
 //
@@ -50640,17 +50638,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
         console.log('Component mounted.');
-        var socket = __WEBPACK_IMPORTED_MODULE_0_socket_io_client___default()('http://localhost:8099');
-        socket.on("public-message:App\\Events\\MessageNotificationEvent", function (data) {
-            alert(data);
-            console.dir(data);
-        });
-        console.log(socket);
     }
 });
 
@@ -55921,6 +55912,8 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_socket_io_client__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_socket_io_client___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_socket_io_client__);
 //
 //
 //
@@ -55933,9 +55926,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['total', 'data'],
     name: 'NotificationBox',
+    mounted: function mounted() {
+        var _this = this;
+
+        var socket = __WEBPACK_IMPORTED_MODULE_0_socket_io_client___default()('http://localhost:8099');
+        var channel = '';
+        socket.on(channel, function (data) {
+            _this.notifications.unshift(data);
+            _this.totalNum = 1 + _this.totalNum;
+            console.log('add new notification');
+        });
+    },
     data: function data() {
         return {
             notifications: this.data,
@@ -55983,7 +55988,7 @@ var render = function() {
       },
       _vm._l(_vm.notifications, function(notification) {
         return _c("a", { staticClass: "dropdown-item", attrs: { href: "#" } }, [
-          _vm._v(_vm._s(notification.message))
+          _vm._v(_vm._s(notification.data.message))
         ])
       })
     )
@@ -56075,6 +56080,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: "Nav",
+    props: ['notifications', 'countNotifications'],
     components: {
         NotificationBox: __WEBPACK_IMPORTED_MODULE_0__NotificationBox_vue___default.a
     }
@@ -56105,7 +56111,21 @@ var render = function() {
             staticClass: "collapse navbar-collapse",
             attrs: { id: "navbarDashboard" }
           },
-          [_c("div", { staticClass: "ml-auto" }, [_c("notification-box")], 1)]
+          [
+            _c(
+              "div",
+              { staticClass: "ml-auto" },
+              [
+                _c("notification-box", {
+                  attrs: {
+                    data: _vm.notifications,
+                    total: _vm.countNotifications
+                  }
+                })
+              ],
+              1
+            )
+          ]
         )
       ]
     )
