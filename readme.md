@@ -66,6 +66,8 @@ php7,laravel-framework,mysql,redis,socket.io
 
 - 编写 “批准” 通知
 
+- 编写 消息弹出窗
+
 2. 测试以上内容
 
 ## Lesson 5
