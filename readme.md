@@ -52,6 +52,10 @@ php7,laravel-framework,mysql,redis,socket.io
 
 1. 利用Eloquent Model Observer 构建“提交-审核-批准”功能
 
+- eloquent model observer 介绍
+
+- 编写 消息弹出窗
+
 - 编写提交页面
 
 - 编写审核页面
@@ -62,11 +66,12 @@ php7,laravel-framework,mysql,redis,socket.io
 
 - 编写审核api
 
+- 建立request model的事件监听，发送通知
+
 - 编写 “提交” 通知
 
 - 编写 “批准” 通知
 
-- 编写 消息弹出窗
 
 2. 测试以上内容
 
