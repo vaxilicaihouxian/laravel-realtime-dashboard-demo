@@ -19,3 +19,7 @@ Route::get('/push-message',function(){
     event(new \App\Events\MessageNotificationEvent());
     return 'push a message!';
 });
+
+Route::get('/notify-approval',function(){
+    \Illuminate\Support\Facades\Notification::send(\App\User::all(),new \App\Notifications\ApprovalNotification('approval!'));
+});
