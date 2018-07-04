@@ -15,6 +15,7 @@
                   :count-notifications="{{ countUnreadNotifications() }}"
                   :user="{{ Auth::check() ? Auth::user()->toJson() : false }}"></nav-tile>
         <example-component></example-component>
+        <flash-message></flash-message>
     </div>
     <script src="{{ asset('js/app.js') }}"></script>
 </body>

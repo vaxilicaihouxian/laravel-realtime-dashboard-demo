@@ -8,7 +8,14 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
-
+window.events = new Vue();
+window.flash = function(message,isError=false){
+    let data = {
+        "context":message,
+        "isError":isError
+    };
+    window.events.$emit('flash',data);
+};
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -17,7 +24,7 @@ window.Vue = require('vue');
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
 Vue.component('nav-tile',require('./components/Nav.vue'));
-
+Vue.component('flash-message',require('./components/Flash.vue'));
 const app = new Vue({
     el: '#app'
 });
