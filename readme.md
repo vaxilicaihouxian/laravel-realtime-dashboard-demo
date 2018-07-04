@@ -36,7 +36,7 @@ php7,laravel-framework,mysql,redis,socket.io
 
 - notification
 
-2. 消息箱组建增加websocket接收通知、更新数据功能
+2. 消息箱组件增加websocket接收通知、更新数据功能
 
 3. 测试相关服务
 
