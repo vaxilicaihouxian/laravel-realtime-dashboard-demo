@@ -33,3 +33,13 @@ Route::post('/post',function(){
     \App\Article::create(['title'=>$title,'user_id'=>Auth::user()->id,'status'=>0]);
     return back();
 })->name('post');
+
+Route::get('/approval',function(){
+    $articles = \App\Article::where('status',0)->get();
+    return view('approval')->with(compact('articles'));
+});
+Route::post('/approval',function(){
+    $id= Request::input('id');
+    \App\Article::where('id',$id)->update(['status'=>1]);
+    return back();
+})->name('approval');
