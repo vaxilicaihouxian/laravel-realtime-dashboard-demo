@@ -55934,7 +55934,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         var _this = this;
 
         var socket = __WEBPACK_IMPORTED_MODULE_0_socket_io_client___default()('http://localhost:8099');
-        var channel = '';
+        //hard code
+        var userId = 1;
+        var channel = 'private-App.User.' + userId + ':Illuminate\\Notifications\\Events\\BroadcastNotificationCreated';
         socket.on(channel, function (data) {
             _this.notifications.unshift(data);
             _this.totalNum = 1 + _this.totalNum;
@@ -55980,18 +55982,22 @@ var render = function() {
       ]
     ),
     _vm._v(" "),
-    _c(
-      "div",
-      {
-        staticClass: "dropdown-menu",
-        attrs: { "aria-labelledby": "notificationBoxMenuButton" }
-      },
-      _vm._l(_vm.notifications, function(notification) {
-        return _c("a", { staticClass: "dropdown-item", attrs: { href: "#" } }, [
-          _vm._v(_vm._s(notification.data.message))
-        ])
-      })
-    )
+    _vm.totalNum > 0
+      ? _c(
+          "div",
+          {
+            staticClass: "dropdown-menu",
+            attrs: { "aria-labelledby": "notificationBoxMenuButton" }
+          },
+          _vm._l(_vm.notifications, function(notification) {
+            return _c(
+              "a",
+              { staticClass: "dropdown-item", attrs: { href: "#" } },
+              [_vm._v(_vm._s(notification.data.message))]
+            )
+          })
+        )
+      : _vm._e()
   ])
 }
 var staticRenderFns = []

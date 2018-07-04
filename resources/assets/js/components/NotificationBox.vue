@@ -4,7 +4,7 @@
             Notifications
             <span v-if="totalNum > 0" class="badge badge-light badge-pill">{{ totalNum }}</span>
         </button>
-        <div class="dropdown-menu" aria-labelledby="notificationBoxMenuButton">
+        <div v-if="totalNum > 0" class="dropdown-menu" aria-labelledby="notificationBoxMenuButton">
             <a v-for=" notification in notifications" class="dropdown-item" href="#">{{ notification.data.message }}</a>
         </div>
     </div>
@@ -16,7 +16,9 @@
         name:'NotificationBox',
         mounted(){
             let socket = io('http://localhost:8099');
-            let channel = '';
+            //hard code
+            let userId = 1;
+            let channel = `private-App.User.${userId}:Illuminate\\Notifications\\Events\\BroadcastNotificationCreated`;
             socket.on(channel,(data)=>{
                 this.notifications.unshift(data);
                 this.totalNum = 1 + this.totalNum;
