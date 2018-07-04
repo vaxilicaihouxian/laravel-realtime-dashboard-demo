@@ -86,4 +86,4 @@ php7,laravel-framework,mysql,redis,socket.io
 
 ## Lesson 6
 
-todo
+总结
