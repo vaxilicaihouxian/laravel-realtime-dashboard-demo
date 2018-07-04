@@ -11,7 +11,9 @@
 </head>
 <body>
     <div id="app">
-        <nav-tile :notifications="{{ getUnreadNotifications() }}" :count-notifications="{{ countUnreadNotifications() }}"></nav-tile>
+        <nav-tile :notifications="{{ getUnreadNotifications() }}"
+                  :count-notifications="{{ countUnreadNotifications() }}"
+                  :user="{{ Auth::check() ? Auth::user()->toJson() : false }}"></nav-tile>
         <example-component></example-component>
     </div>
     <script src="{{ asset('js/app.js') }}"></script>

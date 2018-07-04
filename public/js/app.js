@@ -55928,14 +55928,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['total', 'data'],
+    props: ['total', 'data', 'user'],
     name: 'NotificationBox',
     mounted: function mounted() {
         var _this = this;
 
         var socket = __WEBPACK_IMPORTED_MODULE_0_socket_io_client___default()('http://localhost:8099');
         //hard code
-        var userId = 1;
+        var userId = this.user.id;
         var channel = 'private-App.User.' + userId + ':Illuminate\\Notifications\\Events\\BroadcastNotificationCreated';
         socket.on(channel, function (data) {
             console.log(data);
@@ -56087,7 +56087,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: "Nav",
-    props: ['notifications', 'countNotifications'],
+    props: ['notifications', 'countNotifications', 'user'],
     components: {
         NotificationBox: __WEBPACK_IMPORTED_MODULE_0__NotificationBox_vue___default.a
     }
@@ -56126,7 +56126,8 @@ var render = function() {
                 _c("notification-box", {
                   attrs: {
                     data: _vm.notifications,
-                    total: _vm.countNotifications
+                    total: _vm.countNotifications,
+                    user: _vm.user
                   }
                 })
               ],

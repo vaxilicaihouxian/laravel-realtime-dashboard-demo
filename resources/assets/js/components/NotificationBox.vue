@@ -12,12 +12,12 @@
 <script>
     import io from 'socket.io-client';
     export default {
-        props:['total','data'],
+        props:['total','data','user'],
         name:'NotificationBox',
         mounted(){
             let socket = io('http://localhost:8099');
             //hard code
-            let userId = 1;
+            let userId = this.user.id;
             let channel = `private-App.User.${userId}:Illuminate\\Notifications\\Events\\BroadcastNotificationCreated`;
             socket.on(channel,(data)=>{
                 console.log(data);
