@@ -11,6 +11,8 @@
 |
 */
 
+use Illuminate\Support\Facades\Request;
+
 Route::get('/', function () {
     return view('dashboard');
 });
@@ -22,3 +24,12 @@ Route::get('/notify-approval',function(){
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/post',function(){
+    return view('post');
+});
+Route::post('/post',function(){
+    $title = Request::input('title');
+    \App\Article::create(['title'=>$title,'user_id'=>Auth::user()->id,'status'=>0]);
+    return back();
+})->name('post');
