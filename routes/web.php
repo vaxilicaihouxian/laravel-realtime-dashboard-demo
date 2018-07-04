@@ -18,3 +18,7 @@ Route::get('/', function () {
 Route::get('/notify-approval',function(){
     \Illuminate\Support\Facades\Notification::send(\App\User::all(),new \App\Notifications\ApprovalNotification('approval!'));
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
