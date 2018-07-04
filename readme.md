@@ -52,6 +52,8 @@ php7,laravel-framework,mysql,redis,socket.io
 
 1. 利用Eloquent Model Observer 构建“提交-审核-批准”功能
 
+> 使用 article 表来模拟需要审核的数据
+
 - eloquent model observer 介绍
 
 - 编写 消息弹出窗
