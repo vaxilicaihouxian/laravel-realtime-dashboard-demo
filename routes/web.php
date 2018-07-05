@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Request;
 
 Route::get('/', function () {
     return view('dashboard');
-});
+})->middleware(['auth']);
 
 Route::get('/notify-approval',function(){
     \Illuminate\Support\Facades\Notification::send(\App\User::all(),new \App\Notifications\ApprovalNotification('approval!'));
@@ -27,19 +27,19 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/post',function(){
     return view('post');
-});
+})->middleware(['auth']);
 Route::post('/post',function(){
     $title = Request::input('title');
     \App\Article::create(['title'=>$title,'user_id'=>Auth::user()->id,'status'=>0]);
     return back();
-})->name('post');
+})->name('post')->middleware(['auth']);
 
 Route::get('/approval',function(){
     $articles = \App\Article::where('status',0)->get();
     return view('approval')->with(compact('articles'));
-});
+})->middleware(['auth']);
 Route::post('/approval',function(){
     $id= Request::input('id');
     \App\Article::where('id',$id)->update(['status'=>1]);
     return back();
-})->name('approval');
+})->name('approval')->middleware(['auth']);

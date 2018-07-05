@@ -22,7 +22,7 @@ window.flash = function(message,isError=false){
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
+Vue.component('dashboard', require('./components/Dashboard.vue'));
 Vue.component('nav-tile',require('./components/Nav.vue'));
 Vue.component('flash-message',require('./components/Flash.vue'));
 const app = new Vue({

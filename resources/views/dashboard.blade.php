@@ -15,7 +15,7 @@
                   :count-notifications="{{ countUnreadNotifications() }}"
                   :user="{{ Auth::check() ? Auth::user()->toJson() : false }}"></nav-tile>
         <main class="py-4">
-        <example-component></example-component>
+        <dashboard></dashboard>
         <flash-message></flash-message>
         </main>
     </div>
