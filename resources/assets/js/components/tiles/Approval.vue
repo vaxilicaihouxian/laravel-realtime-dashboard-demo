@@ -14,11 +14,13 @@
            axios.post('/approval/list').then(res =>{
                this.articles = res.data;
                let socket = io('http://localhost:8099');
-               socket.on('private-dashboard:article.need-approval',(data)=>{
+               socket.on('private-dashboard:'+'user-'+window.user.id+'.article.need-approval',(data)=>{
                    this.articles.unshift(data.article);
                });
                socket.on('private-dashboard:article.has-been-approval',(data)=>{
-                   this.articles.splice(this.findIndexOfArticle(data.article),1);
+                   let index = this.findIndexOfArticle(data.article);
+                   if(index !== false)
+                     this.articles.splice(index,1);
                });
            })
        },

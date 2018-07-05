@@ -56838,11 +56838,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         axios.post('/approval/list').then(function (res) {
             _this.articles = res.data;
             var socket = __WEBPACK_IMPORTED_MODULE_0_socket_io_client___default()('http://localhost:8099');
-            socket.on('private-dashboard:article.need-approval', function (data) {
+            socket.on('private-dashboard:' + 'user-' + window.user.id + '.article.need-approval', function (data) {
                 _this.articles.unshift(data.article);
             });
             socket.on('private-dashboard:article.has-been-approval', function (data) {
-                _this.articles.splice(_this.findIndexOfArticle(data.article), 1);
+                var index = _this.findIndexOfArticle(data.article);
+                if (index !== false) _this.articles.splice(index, 1);
             });
         });
     },
