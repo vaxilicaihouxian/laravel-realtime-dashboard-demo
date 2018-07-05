@@ -50854,18 +50854,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         axios.post('/approval/list').then(function (res) {
             _this.articles = res.data;
             var socket = __WEBPACK_IMPORTED_MODULE_0_socket_io_client___default()('http://localhost:8099');
-            socket.on('private-dashboard-' + 'user-' + window.user.id + ':article.need-approval', function (data) {
+            socket.on('article.need-approval', function (data) {
                 _this.articles.unshift(data.article);
             });
-            socket.on('private-dashboard-' + 'user-' + window.user.id, function (data) {
-                console.log('private room?');
-                console.log(data);
-            });
-            socket.on('article.need-approval', function (data) {
-                console.log('private room only event?');
-                console.log(data);
-            });
-            socket.on('private-dashboard-' + 'user-' + window.user.id + ':article.has-been-approval', function (data) {
+            socket.on('article.has-been-approval', function (data) {
                 var index = _this.findIndexOfArticle(data.article);
                 if (index !== false) _this.articles.splice(index, 1);
             });

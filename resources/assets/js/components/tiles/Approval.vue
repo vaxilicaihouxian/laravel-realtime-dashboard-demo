@@ -14,21 +14,13 @@
            axios.post('/approval/list').then(res =>{
                this.articles = res.data;
                let socket = io('http://localhost:8099');
-               socket.on('private-dashboard-'+'user-'+window.user.id+':article.need-approval',(data)=>{
+               socket.on('article.need-approval',(data)=>{
                    this.articles.unshift(data.article);
                });
-               socket.on('private-dashboard-'+'user-'+window.user.id,(data)=>{
-                   console.log('private room?');
-                   console.log(data);
-               });
-               socket.on('article.need-approval',(data)=>{
-                   console.log('private room only event?');
-                   console.log(data);
-               });
-               socket.on('private-dashboard-'+'user-'+window.user.id+':article.has-been-approval',(data)=>{
+               socket.on('article.has-been-approval',(data)=>{
                    let index = this.findIndexOfArticle(data.article);
                    if(index !== false)
-                     this.articles.splice(index,1);
+                       this.articles.splice(index,1);
                });
            })
        },
