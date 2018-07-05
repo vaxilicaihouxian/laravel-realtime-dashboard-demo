@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Article;
+use App\Events\ArticleNeedApproval;
 
 class ArticleObserver
 {
@@ -14,7 +15,10 @@ class ArticleObserver
      */
     public function created(Article $article)
     {
-        //
+        //send event when article created
+        if($article->status == 0 ){
+            broadcast(new ArticleNeedApproval($article));
+        }
     }
 
     /**
