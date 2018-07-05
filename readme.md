@@ -83,12 +83,19 @@ php7,laravel-framework,mysql,redis,socket.io
 
 - approval queue list 组件所在频道，把全部用户的新建article事件都监听了
 
+- socket io 任何人都可以连接，没有任何验证措施
+
 - channel 的加入没有进行权限验证（是否登陆）
-
-
 
 2. 修改代码，增加权限校验
 
+- 修改approval 获取的query(加上user_id条件)
+
+- 修改dashboard抽象类的channel名称(加上-user-用户ID),修改组件内的客户端代码
+
+- socket-io.server.js 内添加一些验证代码(io.user,io.to等)
+
+- 修改组件内监听的代码
 
 ## Lesson 6
 
