@@ -79,9 +79,7 @@ php7,laravel-framework,mysql,redis,socket.io
 
 1. 权限问题
 
-- dashboard 内approval这个组件，不应全部用户都能看到
-- approval 这个页面和批准操作，不应该全部用户都能使用
-
+- approval queue list 中显示的是全部的待审核的数据，用户应该只能看到自己的数据
 
 2. 修改代码，增加权限校验
 
