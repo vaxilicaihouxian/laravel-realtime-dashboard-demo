@@ -13,7 +13,7 @@
        mounted(){
            axios.post('/approval/list').then(res =>{
                this.articles = res.data;
-               let socket = io('http://localhost:8099');
+               let socket = io('http://127.0.0.1:8099');
                socket.on('article.need-approval',(data)=>{
                    this.articles.unshift(data.article);
                });

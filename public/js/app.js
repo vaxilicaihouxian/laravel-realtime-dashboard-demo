@@ -50853,7 +50853,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         axios.post('/approval/list').then(function (res) {
             _this.articles = res.data;
-            var socket = __WEBPACK_IMPORTED_MODULE_0_socket_io_client___default()('http://localhost:8099');
+            var socket = __WEBPACK_IMPORTED_MODULE_0_socket_io_client___default()('http://127.0.0.1:8099');
             socket.on('article.need-approval', function (data) {
                 _this.articles.unshift(data.article);
             });
@@ -56176,7 +56176,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mounted: function mounted() {
         var _this = this;
 
-        var socket = __WEBPACK_IMPORTED_MODULE_0_socket_io_client___default()('http://localhost:8099');
+        var socket = __WEBPACK_IMPORTED_MODULE_0_socket_io_client___default()('http://127.0.0.1:8099');
         var channel = 'Illuminate\\Notifications\\Events\\BroadcastNotificationCreated';
         socket.on(channel, function (data) {
             _this.notifications.unshift({ data: data });

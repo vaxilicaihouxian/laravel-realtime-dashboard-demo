@@ -15,7 +15,7 @@
         props:['total','data'],
         name:'NotificationBox',
         mounted(){
-            let socket = io('http://localhost:8099');
+            let socket = io('http://127.0.0.1:8099');
             let channel = 'Illuminate\\Notifications\\Events\\BroadcastNotificationCreated';
             socket.on(channel,(data)=>{
                 this.notifications.unshift({data});
