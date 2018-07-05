@@ -56809,6 +56809,8 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_socket_io_client__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_socket_io_client___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_socket_io_client__);
 //
 //
 //
@@ -56817,6 +56819,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'Approval',
@@ -56825,6 +56828,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         axios.post('/approval/list').then(function (res) {
             _this.articles = res.data;
+            var socket = __WEBPACK_IMPORTED_MODULE_0_socket_io_client___default()('http://localhost:8099');
+            socket.on('private-dashboard:article.need-approval', function (data) {
+                _this.articles.unshift(data.article);
+            });
         });
     },
     data: function data() {
