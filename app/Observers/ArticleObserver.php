@@ -5,6 +5,7 @@ namespace App\Observers;
 use App\Article;
 use App\Events\ArticleHasBeenApproval;
 use App\Events\ArticleNeedApproval;
+use App\Notifications\ApprovalNotification;
 
 class ArticleObserver
 {
@@ -33,6 +34,7 @@ class ArticleObserver
         //
         if($article->status ==1){
             broadcast(new ArticleHasBeenApproval($article));
+            $article->user->notify(new ApprovalNotification("Approval:{$article->title}"));
         }
     }
 
