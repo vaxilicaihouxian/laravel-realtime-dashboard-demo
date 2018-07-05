@@ -43,3 +43,8 @@ Route::post('/approval',function(){
     \App\Article::where('id',$id)->update(['status'=>1]);
     return back();
 })->name('approval')->middleware(['auth']);
+
+Route::post('/approval/list',function(){
+    $articles = \App\Article::where('status',0)->get();
+    return response()->json($articles->toArray());
+});
