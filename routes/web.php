@@ -45,6 +45,8 @@ Route::post('/approval',function(){
 })->name('approval')->middleware(['auth']);
 
 Route::post('/approval/list',function(){
-    $articles = \App\Article::where('status',0)->orderBy('created_at','desc')->get();
+    $user = Auth::user();
+    $articles = \App\Article::where('status',0)
+        ->where('user_id',$user->id)->orderBy('created_at','desc')->get();
     return response()->json($articles->toArray());
 });

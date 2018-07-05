@@ -81,6 +81,10 @@ php7,laravel-framework,mysql,redis,socket.io
 
 - approval queue list 中显示的是全部的待审核的数据，用户应该只能看到自己的数据
 
+- approval queue list 组件所在频道，把全部用户的新建article事件都监听了
+
+
+
 2. 修改代码，增加权限校验
 
 
