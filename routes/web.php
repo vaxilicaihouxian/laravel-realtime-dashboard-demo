@@ -35,7 +35,7 @@ Route::post('/post',function(){
 })->name('post')->middleware(['auth']);
 
 Route::get('/approval',function(){
-    $articles = \App\Article::where('status',0)->get();
+    $articles = \App\Article::where('status',0)->orderBy('created_at','desc')->get();
     return view('approval')->with(compact('articles'));
 })->middleware(['auth']);
 Route::post('/approval',function(){
@@ -45,6 +45,6 @@ Route::post('/approval',function(){
 })->name('approval')->middleware(['auth']);
 
 Route::post('/approval/list',function(){
-    $articles = \App\Article::where('status',0)->get();
+    $articles = \App\Article::where('status',0)->orderBy('created_at','desc')->get();
     return response()->json($articles->toArray());
 });

@@ -12,6 +12,7 @@
        mounted(){
            axios.post('/approval/list').then(res =>{
                this.articles = res.data;
+
            })
        },
        data(){
