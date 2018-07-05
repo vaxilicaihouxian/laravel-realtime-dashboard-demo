@@ -14,6 +14,9 @@ let redis = new ioRedis(REDIS);
 app.listen(SOCKET_PORT, function() {
     console.log(new Date + ' - Server is running on port ' + SOCKET_PORT + ' and listening Redis on port ' + REDIS.port + '!');
 });
+//get laravel session
+let laravelSession = require('node-laravel-session');
+let cookie = require('cookie');
 io.use(function(socket,next){
     let session = cookie.parse(socket.request.headers.cookie).laravel_session;
     laravelSession.getAppKey('./.env')
@@ -23,15 +26,12 @@ io.use(function(socket,next){
             laravelSession.getSessionFromFile(sessionKey,'./storage/framework/sessions')
                 .then((session)=>{
                     socket.userId = getUserIdFromSession(session);
-                    next();
+                    return next();
                 }).catch(err=>{
-                next(new Error('Authentication error'));
+                return next(new Error('Authentication error'));
             });
         });
 });
-//get laravel session
-let laravelSession = require('node-laravel-session');
-let cookie = require('cookie');
 io.on('connection', function(socket) {
     console.log('A client connected');
     //join in to a channel
