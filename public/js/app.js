@@ -55911,20 +55911,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['total', 'data', 'user'],
+    props: ['total', 'data'],
     name: 'NotificationBox',
     mounted: function mounted() {
         var _this = this;
 
         var socket = __WEBPACK_IMPORTED_MODULE_0_socket_io_client___default()('http://localhost:8099');
-        //hard code
-        var userId = this.user.id;
+        var userId = window.user.id;
         var channel = 'private-App.User.' + userId + ':Illuminate\\Notifications\\Events\\BroadcastNotificationCreated';
         socket.on(channel, function (data) {
-            console.log(data);
             _this.notifications.unshift({ data: data });
             _this.totalNum = 1 + _this.totalNum;
-            console.log('add new notification');
+            window.flash(data.message);
         });
     },
     data: function data() {
@@ -56070,7 +56068,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: "Nav",
-    props: ['notifications', 'countNotifications', 'user'],
+    props: ['notifications', 'countNotifications'],
     components: {
         NotificationBox: __WEBPACK_IMPORTED_MODULE_0__NotificationBox_vue___default.a
     }
@@ -56109,8 +56107,7 @@ var render = function() {
                 _c("notification-box", {
                   attrs: {
                     data: _vm.notifications,
-                    total: _vm.countNotifications,
-                    user: _vm.user
+                    total: _vm.countNotifications
                   }
                 })
               ],
@@ -56841,7 +56838,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             socket.on('private-dashboard:' + 'user-' + window.user.id + '.article.need-approval', function (data) {
                 _this.articles.unshift(data.article);
             });
-            socket.on('private-dashboard:article.has-been-approval', function (data) {
+            socket.on('private-dashboard:' + 'user-' + window.user.id + '.article.has-been-approval', function (data) {
                 var index = _this.findIndexOfArticle(data.article);
                 if (index !== false) _this.articles.splice(index, 1);
             });

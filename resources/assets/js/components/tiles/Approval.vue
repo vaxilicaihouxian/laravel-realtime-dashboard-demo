@@ -17,7 +17,7 @@
                socket.on('private-dashboard:'+'user-'+window.user.id+'.article.need-approval',(data)=>{
                    this.articles.unshift(data.article);
                });
-               socket.on('private-dashboard:article.has-been-approval',(data)=>{
+               socket.on('private-dashboard:'+'user-'+window.user.id+'.article.has-been-approval',(data)=>{
                    let index = this.findIndexOfArticle(data.article);
                    if(index !== false)
                      this.articles.splice(index,1);

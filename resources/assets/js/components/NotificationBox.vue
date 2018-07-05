@@ -12,18 +12,16 @@
 <script>
     import io from 'socket.io-client';
     export default {
-        props:['total','data','user'],
+        props:['total','data'],
         name:'NotificationBox',
         mounted(){
             let socket = io('http://localhost:8099');
-            //hard code
-            let userId = this.user.id;
+            let userId = window.user.id;
             let channel = `private-App.User.${userId}:Illuminate\\Notifications\\Events\\BroadcastNotificationCreated`;
             socket.on(channel,(data)=>{
-                console.log(data);
                 this.notifications.unshift({data});
                 this.totalNum = 1 + this.totalNum;
-                console.log('add new notification');
+                window.flash(data.message);
             })
         },
         data(){

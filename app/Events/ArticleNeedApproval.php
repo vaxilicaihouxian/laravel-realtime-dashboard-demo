@@ -11,7 +11,6 @@ class ArticleNeedApproval extends DashboardEvent
      */
     public $article;
 
-
     /**
      * Create a new event instance.
      *
@@ -26,6 +25,6 @@ class ArticleNeedApproval extends DashboardEvent
 
     public function broadcastAs()
     {
-       return 'article.need-approval';
+       return 'user-'.$this->article->user_id.'.article.need-approval';
     }
 }

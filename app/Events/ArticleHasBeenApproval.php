@@ -30,6 +30,6 @@ class ArticleHasBeenApproval extends DashboardEvent
 
     public function broadcastAs()
     {
-       return 'article.has-been-approval';
+       return 'user-'.$this->article->user_id.'.article.has-been-approval';
     }
 }
