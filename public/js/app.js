@@ -17260,9 +17260,9 @@ window.Popper = __webpack_require__(14).default;
  */
 
 try {
-  window.$ = window.jQuery = __webpack_require__(15);
+    window.$ = window.jQuery = __webpack_require__(15);
 
-  __webpack_require__(36);
+    __webpack_require__(36);
 } catch (e) {}
 
 /**
@@ -17284,11 +17284,20 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 var token = document.head.querySelector('meta[name="csrf-token"]');
 
 if (token) {
-  window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+    window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
 } else {
-  console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+    console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
 
+var userId = document.head.querySelector('meta[name="user-id"]');
+
+if (userId) {
+    window.user = {
+        id: userId.content
+    };
+} else {
+    window.user = false;
+}
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting
