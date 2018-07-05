@@ -56832,12 +56832,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             socket.on('private-dashboard:article.need-approval', function (data) {
                 _this.articles.unshift(data.article);
             });
+            socket.on('private-dashboard:article.has-been-approval', function (data) {
+                _this.articles.splice(_this.findIndexOfArticle(data.article), 1);
+            });
         });
     },
     data: function data() {
         return {
             articles: []
         };
+    },
+
+    methods: {
+        findIndexOfArticle: function findIndexOfArticle(article) {
+            for (var i = 0; i < this.articles.length; i++) {
+                if (this.articles[i].id === article.id) return i;
+            }
+            return false;
+        }
     }
 });
 

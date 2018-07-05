@@ -17,11 +17,23 @@
                socket.on('private-dashboard:article.need-approval',(data)=>{
                    this.articles.unshift(data.article);
                });
+               socket.on('private-dashboard:article.has-been-approval',(data)=>{
+                   this.articles.splice(this.findIndexOfArticle(data.article),1);
+               });
            })
        },
        data(){
            return {
                articles:[]
+           }
+       },
+       methods:{
+           findIndexOfArticle(article){
+              for(let i = 0;i < this.articles.length;i++){
+                  if(this.articles[i].id === article.id)
+                      return i;
+              }
+              return false;
            }
        }
    }

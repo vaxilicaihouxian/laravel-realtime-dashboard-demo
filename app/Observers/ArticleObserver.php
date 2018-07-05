@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Article;
+use App\Events\ArticleHasBeenApproval;
 use App\Events\ArticleNeedApproval;
 
 class ArticleObserver
@@ -30,6 +31,9 @@ class ArticleObserver
     public function updated(Article $article)
     {
         //
+        if($article->status ==1){
+            broadcast(new ArticleHasBeenApproval($article));
+        }
     }
 
     /**

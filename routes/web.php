@@ -40,7 +40,7 @@ Route::get('/approval',function(){
 })->middleware(['auth']);
 Route::post('/approval',function(){
     $id= Request::input('id');
-    \App\Article::where('id',$id)->update(['status'=>1]);
+    \App\Article::where('id',$id)->first()->update(['status'=>1]);
     return back();
 })->name('approval')->middleware(['auth']);
 
