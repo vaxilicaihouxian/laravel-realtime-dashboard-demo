@@ -35,5 +35,9 @@ redis.on('pmessage', function(subscribed, channel, data) {
     console.log(new Date);
     console.log(data);
     console.log(channel);
-    io.to(channel).emit(data.event, data.data);
+    if(channel.indexOf('private') > -1){
+        io.to(channel).emit(data.event, data.data);
+    }else{
+        io.emit(channel+':'+data.event,data.data);
+    }
 });
