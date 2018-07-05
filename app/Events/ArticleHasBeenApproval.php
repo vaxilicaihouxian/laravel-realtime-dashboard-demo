@@ -25,11 +25,12 @@ class ArticleHasBeenApproval extends DashboardEvent
      */
     public function __construct(Article $article)
     {
+        $this->userId = $article->user_id;
         $this->article = $article;
     }
 
     public function broadcastAs()
     {
-       return 'user-'.$this->article->user_id.'.article.has-been-approval';
+       return 'article.has-been-approval';
     }
 }

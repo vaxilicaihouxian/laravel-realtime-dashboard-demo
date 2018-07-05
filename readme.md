@@ -83,6 +83,8 @@ php7,laravel-framework,mysql,redis,socket.io
 
 - approval queue list 组件所在频道，把全部用户的新建article事件都监听了
 
+- channel 的加入没有进行权限验证（是否登陆）
+
 
 
 2. 修改代码，增加权限校验

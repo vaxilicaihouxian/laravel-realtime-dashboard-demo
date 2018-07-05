@@ -25,6 +25,8 @@ abstract class DashboardEvent implements ShouldBroadcast
      */
     public $broadcastQueue = 'dashboard';
 
+    public $userId;
+
     /**
      * Get the channels the event should broadcast on.
      *
@@ -32,7 +34,7 @@ abstract class DashboardEvent implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('dashboard');
+        return new PrivateChannel('dashboard-user-'.$this->userId);
     }
 
     /**
