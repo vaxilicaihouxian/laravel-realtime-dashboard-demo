@@ -70,8 +70,6 @@ php7,laravel-framework,mysql,redis,socket.io
 
 - 建立 article model的事件监听，发送通知
 
-- 编写 “提交” 通知
-
 - 编写 “批准” 通知
 
 
@@ -80,6 +78,10 @@ php7,laravel-framework,mysql,redis,socket.io
 ## Lesson 5
 
 1. 权限问题
+
+- dashboard 内approval这个组建，不应全部用户都能看到
+- approval 这个页面和批准操作，不应该全部用户都能使用
+
 
 2. 修改代码，增加权限校验
 
