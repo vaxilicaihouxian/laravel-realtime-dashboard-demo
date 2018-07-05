@@ -56177,8 +56177,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         var _this = this;
 
         var socket = __WEBPACK_IMPORTED_MODULE_0_socket_io_client___default()('http://localhost:8099');
-        var userId = window.user.id;
-        var channel = 'private-App.User.' + userId + ':Illuminate\\Notifications\\Events\\BroadcastNotificationCreated';
+        var channel = 'Illuminate\\Notifications\\Events\\BroadcastNotificationCreated';
         socket.on(channel, function (data) {
             _this.notifications.unshift({ data: data });
             _this.totalNum = 1 + _this.totalNum;

@@ -23,9 +23,12 @@ io.use(function(socket,next){
 io.on('connection', function(socket) {
     console.log('A client connected');
     //join in to a channel
-    let room = 'private-dashboard-user-'+socket.userId;
-    console.log('room:'+room);
-    socket.join(room);
+    let dashboardRoom = 'private-dashboard-user-'+socket.userId;
+    console.log('room:'+dashboardRoom);
+    socket.join(dashboardRoom);
+    let notifyRoom = 'private-App.User.'+socket.userId;
+    console.log('room:'+notifyRoom);
+    socket.join(notifyRoom);
 });
 redis.psubscribe('*', function(err, count) {
     console.log('Subscribed');

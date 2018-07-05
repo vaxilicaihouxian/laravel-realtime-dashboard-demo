@@ -16,8 +16,7 @@
         name:'NotificationBox',
         mounted(){
             let socket = io('http://localhost:8099');
-            let userId = window.user.id;
-            let channel = `private-App.User.${userId}:Illuminate\\Notifications\\Events\\BroadcastNotificationCreated`;
+            let channel = 'Illuminate\\Notifications\\Events\\BroadcastNotificationCreated';
             socket.on(channel,(data)=>{
                 this.notifications.unshift({data});
                 this.totalNum = 1 + this.totalNum;
