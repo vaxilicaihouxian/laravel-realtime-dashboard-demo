@@ -2,9 +2,6 @@
     <div class="container dashboard-box">
         <div class="row">
             <approval></approval>
-            <approval></approval>
-            <approval></approval>
-
         </div>
     </div>
 </template>

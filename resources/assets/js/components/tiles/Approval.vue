@@ -20,6 +20,7 @@
 <script>
     import io from 'socket.io-client';
     import Tile from '../Tile.vue';
+    import '../../../sass/transitions/approval.scss';
    export default{
        name:'Approval',
        mounted(){
@@ -64,21 +65,4 @@
       min-height:200px;
 
    }
-   @keyframes slide {
-      0% {
-         top:-100%;
-      }
-      100% {
-         top:0;
-      }
-
-   }
-   .approval-enter-active, .approval-leave-active {
-      transition: all 0.5s;
-   }
-   .approval-enter, .approval-leave-to /* .list-leave-active below version 2.1.8 */ {
-      opacity: 0;
-      transform: translateY(-30px);
-   }
-
 </style>

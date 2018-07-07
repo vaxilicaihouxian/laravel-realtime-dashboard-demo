@@ -1,0 +1,7 @@
+.approval-enter-active, .approval-leave-active {
+  transition: all 0.5s;
+}
+.approval-enter, .approval-leave-to /* .list-leave-active below version 2.1.8 */ {
+  opacity: 0;
+  transform: translateY(-30px);
+}
