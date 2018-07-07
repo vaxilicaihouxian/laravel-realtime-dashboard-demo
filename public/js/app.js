@@ -55965,6 +55965,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "tile",
+    { attrs: { position: 1 } },
     [
       _c(
         "transition-group",
@@ -57461,8 +57462,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'Tile',
+    props: ['position'],
     methods: {
         getTileClass: function getTileClass() {
+            if (this.position) {
+                return 'col-md-' + this.position * 4;
+            }
             return 'col-md-4';
         }
     }
