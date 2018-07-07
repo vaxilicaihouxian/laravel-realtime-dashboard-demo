@@ -50,3 +50,7 @@ Route::post('/approval/list',function(){
         ->where('user_id',$user->id)->orderBy('created_at','desc')->get();
     return response()->json($articles->toArray());
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

@@ -1,19 +1,35 @@
 <template>
-   <div>
-      <ul v-if="articles.length > 0" class="list-group" >
-         <li v-for="article in articles" class="list-group-item">{{ article.title }}</li>
-      </ul>
-      <div v-if="articles.length === 0">No Approval Articles</div>
-   </div>
+   <tile>
+      <transition-group name="approval" tag="div">
+         <div class="card mb-2 approval-card " :key="article.id" v-if="articles.length > 0" v-for="article in articles">
+            <div class="card-body">
+               <h5 class="text-center">{{ article.title }}</h5>
+               <p class="card-text">some text</p>
+            </div>
+         </div>
+      </transition-group>
+
+      <div class="card mb-2 approval-card" v-if="articles.length == 0">
+         <div class="card-body">
+            <p class="card-text text-center font-weight-bold">No Approval Articles</p>
+         </div>
+      </div>
+   </tile>
+
 </template>
 <script>
     import io from 'socket.io-client';
+    import Tile from '../Tile.vue';
    export default{
        name:'Approval',
        mounted(){
            axios.post('/approval/list').then(res =>{
                this.articles = res.data;
                let socket = io('http://127.0.0.1:8099');
+               socket.on('error',(err)=>{
+                   console.error(err);
+                   socket.disconnect();
+               })
                socket.on('article.need-approval',(data)=>{
                    this.articles.unshift(data.article);
                });
@@ -26,7 +42,7 @@
        },
        data(){
            return {
-               articles:[]
+               articles:[],
            }
        },
        methods:{
@@ -37,6 +53,32 @@
               }
               return false;
            }
+       },
+       components:{
+           Tile
        }
    }
 </script>
+<style>
+   .approval-card{
+      min-height:200px;
+
+   }
+   @keyframes slide {
+      0% {
+         top:-100%;
+      }
+      100% {
+         top:0;
+      }
+
+   }
+   .approval-enter-active, .approval-leave-active {
+      transition: all 0.5s;
+   }
+   .approval-enter, .approval-leave-to /* .list-leave-active below version 2.1.8 */ {
+      opacity: 0;
+      transform: translateY(-30px);
+   }
+
+</style>

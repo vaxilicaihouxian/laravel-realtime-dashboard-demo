@@ -33,6 +33,9 @@ io.use(function(socket,next){
         });
 });
 io.on('connection', function(socket) {
+    socket.on('error',function(){
+
+    });
     console.log('A client connected');
     //join in to a channel
     let dashboardRoom = 'private-dashboard-user-'+socket.userId;

@@ -50692,6 +50692,10 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(108)
+}
 var normalizeComponent = __webpack_require__(5)
 /* script */
 var __vue_script__ = __webpack_require__(62)
@@ -50700,7 +50704,7 @@ var __vue_template__ = __webpack_require__(89)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
-var __vue_styles__ = null
+var __vue_styles__ = injectStyle
 /* scopeId */
 var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
@@ -50753,21 +50757,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -50786,6 +50776,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(113)
+}
 var normalizeComponent = __webpack_require__(5)
 /* script */
 var __vue_script__ = __webpack_require__(64)
@@ -50794,7 +50788,7 @@ var __vue_template__ = __webpack_require__(88)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
-var __vue_styles__ = null
+var __vue_styles__ = injectStyle
 /* scopeId */
 var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
@@ -50836,6 +50830,8 @@ module.exports = Component.exports
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_socket_io_client__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_socket_io_client___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_socket_io_client__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Tile_vue__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Tile_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__Tile_vue__);
 //
 //
 //
@@ -50844,6 +50840,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -50854,6 +50862,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         axios.post('/approval/list').then(function (res) {
             _this.articles = res.data;
             var socket = __WEBPACK_IMPORTED_MODULE_0_socket_io_client___default()('http://127.0.0.1:8099');
+            socket.on('error', function (err) {
+                console.error(err);
+                socket.disconnect();
+            });
             socket.on('article.need-approval', function (data) {
                 _this.articles.unshift(data.article);
             });
@@ -50876,6 +50888,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
             return false;
         }
+    },
+    components: {
+        Tile: __WEBPACK_IMPORTED_MODULE_1__Tile_vue___default.a
     }
 });
 
@@ -55948,23 +55963,45 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _vm.articles.length > 0
-      ? _c(
-          "ul",
-          { staticClass: "list-group" },
-          _vm._l(_vm.articles, function(article) {
-            return _c("li", { staticClass: "list-group-item" }, [
-              _vm._v(_vm._s(article.title))
+  return _c(
+    "tile",
+    [
+      _c(
+        "transition-group",
+        { attrs: { name: "approval", tag: "div" } },
+        _vm._l(_vm.articles, function(article) {
+          return _vm.articles.length > 0
+            ? _c(
+                "div",
+                { key: article.id, staticClass: "card mb-2 approval-card " },
+                [
+                  _c("div", { staticClass: "card-body" }, [
+                    _c("h5", { staticClass: "text-center" }, [
+                      _vm._v(_vm._s(article.title))
+                    ]),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "card-text" }, [_vm._v("some text")])
+                  ])
+                ]
+              )
+            : _vm._e()
+        })
+      ),
+      _vm._v(" "),
+      _vm.articles.length == 0
+        ? _c("div", { staticClass: "card mb-2 approval-card" }, [
+            _c("div", { staticClass: "card-body" }, [
+              _c(
+                "p",
+                { staticClass: "card-text text-center font-weight-bold" },
+                [_vm._v("No Approval Articles")]
+              )
             ])
-          })
-        )
-      : _vm._e(),
-    _vm._v(" "),
-    _vm.articles.length === 0
-      ? _c("div", [_vm._v("No Approval Articles")])
-      : _vm._e()
-  ])
+          ])
+        : _vm._e()
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -55984,30 +56021,19 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    _c("div", { staticClass: "row justify-content-center" }, [
-      _c("div", { staticClass: "col-md-12" }, [
-        _c("div", { staticClass: "card card-default" }, [
-          _c("div", { staticClass: "card-header" }, [_vm._v("Dashboard")]),
-          _vm._v(" "),
-          _c("div", { staticClass: "card-body" }, [
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-md-4" }, [
-                _c("div", { staticClass: "card card-default" }, [
-                  _c("div", { staticClass: "card-header" }, [
-                    _vm._v(
-                      "\n                                    Approval Queue List\n                                "
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "card-body" }, [_c("approval")], 1)
-                ])
-              ])
-            ])
-          ])
-        ])
-      ])
-    ])
+  return _c("div", { staticClass: "container dashboard-box" }, [
+    _c(
+      "div",
+      { staticClass: "row" },
+      [
+        _c("approval"),
+        _vm._v(" "),
+        _c("approval"),
+        _vm._v(" "),
+        _c("approval")
+      ],
+      1
+    )
   ])
 }
 var staticRenderFns = []
@@ -56888,6 +56914,178 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 105 */,
+/* 106 */,
+/* 107 */,
+/* 108 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(109);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(100)("7d503695", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-1f65406d\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Dashboard.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-1f65406d\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Dashboard.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 109 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(99)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.dashboard-box{\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 110 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(5)
+/* script */
+var __vue_script__ = __webpack_require__(111)
+/* template */
+var __vue_template__ = __webpack_require__(112)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/Tile.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-6befec65", Component.options)
+  } else {
+    hotAPI.reload("data-v-6befec65", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 111 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    name: 'Tile',
+    methods: {
+        getTileClass: function getTileClass() {
+            return 'col-md-4';
+        }
+    }
+});
+
+/***/ }),
+/* 112 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { class: _vm.getTileClass() }, [_vm._t("default")], 2)
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-6befec65", module.exports)
+  }
+}
+
+/***/ }),
+/* 113 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(114);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(100)("24735f3d", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4189b904\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Approval.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4189b904\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Approval.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 114 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(99)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.approval-card{\n   min-height:200px;\n}\n@-webkit-keyframes slide {\n0% {\n      top:-100%;\n}\n100% {\n      top:0;\n}\n}\n@keyframes slide {\n0% {\n      top:-100%;\n}\n100% {\n      top:0;\n}\n}\n.approval-enter-active, .approval-leave-active {\n   -webkit-transition: all 0.5s;\n   transition: all 0.5s;\n}\n.approval-enter, .approval-leave-to /* .list-leave-active below version 2.1.8 */ {\n   opacity: 0;\n   -webkit-transform: translateY(-30px);\n           transform: translateY(-30px);\n}\n\n", ""]);
+
+// exports
+
 
 /***/ })
 /******/ ]);
