@@ -10411,6 +10411,23 @@ a.text-dark:focus {
   }
 }
 
+.card-enter-active,
+.card-leave-active {
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+.card-enter,
+.card-leave-to {
+  opacity: 0;
+  -webkit-transform: translateY(-30px);
+          transform: translateY(-30px);
+}
+
+body {
+  font-family: Arial,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","WenQuanYi Micro Hei",sans-serif;
+}
+
 .navbar-laravel {
   background-color: #fff;
   -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);

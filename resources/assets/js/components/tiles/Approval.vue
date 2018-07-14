@@ -1,6 +1,6 @@
 <template>
    <tile :position="1">
-      <transition-group name="approval" tag="div">
+      <transition-group name="card" tag="div">
          <div class="card mb-2 approval-card " :key="article.id" v-if="articles.length > 0" v-for="article in articles">
             <div class="card-body">
                <h5 class="text-center">{{ article.title }}</h5>
@@ -18,15 +18,14 @@
 
 </template>
 <script>
-    import io from 'socket.io-client';
     import Tile from '../Tile.vue';
-    import '../../../sass/transitions/approval.scss';
+    import SocketClient from '../../lib/SocketClient';
    export default{
        name:'Approval',
        mounted(){
            axios.post('/approval/list').then(res =>{
                this.articles = res.data;
-               let socket = io('http://127.0.0.1:8099');
+               let socket = SocketClient;
                socket.on('error',(err)=>{
                    console.error(err);
                    socket.disconnect();

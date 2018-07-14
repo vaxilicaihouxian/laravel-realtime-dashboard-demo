@@ -11,11 +11,13 @@
 </template>
 <script>
     import io from 'socket.io-client';
+    import SocketClient from '../lib/SocketClient';
+
     export default {
         props:['total','data'],
         name:'NotificationBox',
         mounted(){
-            let socket = io('http://127.0.0.1:8099');
+            let socket = SocketClient;
             let channel = 'Illuminate\\Notifications\\Events\\BroadcastNotificationCreated';
             socket.on(channel,(data)=>{
                 this.notifications.unshift({data});

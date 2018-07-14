@@ -11,6 +11,7 @@
 |
 */
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Request;
 
 Route::get('/', function () {
@@ -54,3 +55,9 @@ Route::post('/approval/list',function(){
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/db',function(){
+    DB::enableQueryLog();
+    App\Article::with(['user'])->get()->toArray();
+    dd(DB::getQueryLog());
+    return 'db';
+});
