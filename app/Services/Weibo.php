@@ -48,7 +48,8 @@ class Weibo
                 'username'=>$item['user']['screen_name'],
                 'avatar'=>$item['user']['profile_image_url'],
                 'mid'=>$item['mid'],
-                'location'=>$item['user']['location']
+                'location'=>$item['user']['location'],
+                'source'=>$item['source']
             ];
         });
         return $data;

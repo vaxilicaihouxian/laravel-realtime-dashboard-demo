@@ -1,5 +1,5 @@
 <template>
-   <tile :position="1">
+   <tile :position="2">
       <transition-group name="card" tag="div">
          <div class="card mb-2 approval-card " :key="article.id" v-if="articles.length > 0" v-for="article in articles">
             <div class="card-body">

@@ -1,21 +1,30 @@
 <template>
-    <tile :position="1">
-        <transition-group name="card" tag="div">
-            <div class="card mb-2 weibo-mention-card " :key="mention.mid" v-if="mentions.length > 0" v-for="mention in mentions">
-                <div class="card-body">
+    <tile :position="3">
+        <div class="card" v-if="mentions.length > 0">
+            <div class="card-body">
+            <h5 class="card-title text-center">
+                <img src="./img/weibo-logo.jpg" alt="weibo">
+                微博@
+
+            </h5>
+        <transition-group name="card" tag="ul" class="list-group list-group-flush">
+
+                <li class="list-group-item" :key="mention.mid"  v-for="mention in mentions">
                     <div class="row">
                         <div class="col-sm-2">
                             <img :src="mention.avatar" class="border border-light rounded-circle" alt="avatar">
                         </div>
                         <div class="col-sm-10">
-                            <h5 class="card-title">{{ mention.username }} <small class="ml-2 text-muted">@{{ mention.location}}</small></h5>
-                            <p class="card-text">{{ mention.text }}</p>
-                        </div>
+                            <h5>{{ mention.username }} <small class="ml-2 text-muted">@{{ mention.location}}</small></h5>
+                            <p>{{ mention.text }}</p>
+                            <a :href="parseLink(mention.source)" target="_blank">微博来源</a>
                         </div>
                     </div>
-
-            </div>
+                </li>
         </transition-group>
+            </div>
+
+        </div>
 
         <div class="card mb-2 weibo-mention-card" v-if="mentions.length == 0">
             <div class="card-body">
@@ -27,7 +36,7 @@
 <script>
     import Tile from '../Tile.vue';
     import SocketClient from '../../lib/SocketClient';
-
+    import saveState from 'vue-save-state';
     export default{
         name:'weibo-mentions',
         mounted(){
@@ -46,6 +55,23 @@
                 mentions:[]
             }
         },
+        mixins:[
+            saveState
+        ],
+        methods:{
+            parseLink(content){
+                let result = content.match(/href=\"(.*)\"\s+/);
+                if(result.length >1){
+                    return result[1];
+                }
+                return '';
+            },
+            getSaveStateConfig(){
+                return {
+                    'cacheKey':'dashboard-weibo-mentions'
+                };
+            }
+        },
         components:{
             Tile
         }
@@ -54,5 +80,11 @@
 <style>
     .weibo-mention-card{
         min-height: 100px;
+    }
+</style>
+<style scoped>
+    .list-group-item{
+        padding-left: 0;
+        padding-right: 0;
     }
 </style>

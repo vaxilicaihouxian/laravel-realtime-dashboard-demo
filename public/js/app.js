@@ -51400,7 +51400,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
         getTileClass: function getTileClass() {
             if (this.position) {
-                return 'col-md-' + this.position * 4;
+                return 'col-md-' + this.position * 2;
             }
             return 'col-md-4';
         }
@@ -56498,7 +56498,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "tile",
-    { attrs: { position: 1 } },
+    { attrs: { position: 2 } },
     [
       _c(
         "transition-group",
@@ -56555,18 +56555,19 @@ var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
   __webpack_require__(101)
+  __webpack_require__(122)
 }
 var normalizeComponent = __webpack_require__(3)
 /* script */
 var __vue_script__ = __webpack_require__(103)
 /* template */
-var __vue_template__ = __webpack_require__(104)
+var __vue_template__ = __webpack_require__(124)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
 var __vue_styles__ = injectStyle
 /* scopeId */
-var __vue_scopeId__ = null
+var __vue_scopeId__ = "data-v-77403aba"
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
@@ -56647,6 +56648,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Tile_vue__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Tile_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Tile_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__lib_SocketClient__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue_save_state__ = __webpack_require__(125);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue_save_state___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_vue_save_state__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -56698,90 +56710,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
 
+    mixins: [__WEBPACK_IMPORTED_MODULE_2_vue_save_state___default.a],
+    methods: {
+        parseLink: function parseLink(content) {
+            var result = content.match(/href=\"(.*)\"\s+/);
+            if (result.length > 1) {
+                return result[1];
+            }
+            return '';
+        },
+        getSaveStateConfig: function getSaveStateConfig() {
+            return {
+                'cacheKey': 'dashboard-weibo-mentions'
+            };
+        }
+    },
     components: {
         Tile: __WEBPACK_IMPORTED_MODULE_0__Tile_vue___default.a
     }
 });
 
 /***/ }),
-/* 104 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "tile",
-    { attrs: { position: 1 } },
-    [
-      _c(
-        "transition-group",
-        { attrs: { name: "card", tag: "div" } },
-        _vm._l(_vm.mentions, function(mention) {
-          return _vm.mentions.length > 0
-            ? _c(
-                "div",
-                {
-                  key: mention.mid,
-                  staticClass: "card mb-2 weibo-mention-card "
-                },
-                [
-                  _c("div", { staticClass: "card-body" }, [
-                    _c("div", { staticClass: "row" }, [
-                      _c("div", { staticClass: "col-sm-2" }, [
-                        _c("img", {
-                          staticClass: "border border-light rounded-circle",
-                          attrs: { src: mention.avatar, alt: "avatar" }
-                        })
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col-sm-10" }, [
-                        _c("h5", { staticClass: "card-title" }, [
-                          _vm._v(_vm._s(mention.username) + " "),
-                          _c("small", { staticClass: "ml-2 text-muted" }, [
-                            _vm._v("@" + _vm._s(mention.location))
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("p", { staticClass: "card-text" }, [
-                          _vm._v(_vm._s(mention.text))
-                        ])
-                      ])
-                    ])
-                  ])
-                ]
-              )
-            : _vm._e()
-        })
-      ),
-      _vm._v(" "),
-      _vm.mentions.length == 0
-        ? _c("div", { staticClass: "card mb-2 weibo-mention-card" }, [
-            _c("div", { staticClass: "card-body" }, [
-              _c(
-                "p",
-                { staticClass: "card-text text-center font-weight-bold" },
-                [_vm._v("No Weibo Mentions")]
-              )
-            ])
-          ])
-        : _vm._e()
-    ],
-    1
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-77403aba", module.exports)
-  }
-}
-
-/***/ }),
+/* 104 */,
 /* 105 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -57336,6 +57286,255 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 118 */,
+/* 119 */,
+/* 120 */,
+/* 121 */
+/***/ (function(module, exports) {
+
+module.exports = "/images/weibo-logo.jpg?ba21529f5662359db53f1b3759e22d61";
+
+/***/ }),
+/* 122 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(123);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(7)("421fd85d", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-77403aba\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=1!./WeiboMention.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-77403aba\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=1!./WeiboMention.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 123 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(6)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.list-group-item[data-v-77403aba]{\n    padding-left: 0;\n    padding-right: 0;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 124 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("tile", { attrs: { position: 3 } }, [
+    _vm.mentions.length > 0
+      ? _c("div", { staticClass: "card" }, [
+          _c(
+            "div",
+            { staticClass: "card-body" },
+            [
+              _c("h5", { staticClass: "card-title text-center" }, [
+                _c("img", {
+                  attrs: { src: __webpack_require__(121), alt: "weibo" }
+                }),
+                _vm._v("\n            微博@\n\n        ")
+              ]),
+              _vm._v(" "),
+              _c(
+                "transition-group",
+                {
+                  staticClass: "list-group list-group-flush",
+                  attrs: { name: "card", tag: "ul" }
+                },
+                _vm._l(_vm.mentions, function(mention) {
+                  return _c(
+                    "li",
+                    { key: mention.mid, staticClass: "list-group-item" },
+                    [
+                      _c("div", { staticClass: "row" }, [
+                        _c("div", { staticClass: "col-sm-2" }, [
+                          _c("img", {
+                            staticClass: "border border-light rounded-circle",
+                            attrs: { src: mention.avatar, alt: "avatar" }
+                          })
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-sm-10" }, [
+                          _c("h5", [
+                            _vm._v(_vm._s(mention.username) + " "),
+                            _c("small", { staticClass: "ml-2 text-muted" }, [
+                              _vm._v("@" + _vm._s(mention.location))
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("p", [_vm._v(_vm._s(mention.text))]),
+                          _vm._v(" "),
+                          _c(
+                            "a",
+                            {
+                              attrs: {
+                                href: _vm.parseLink(mention.source),
+                                target: "_blank"
+                              }
+                            },
+                            [_vm._v("微博来源")]
+                          )
+                        ])
+                      ])
+                    ]
+                  )
+                })
+              )
+            ],
+            1
+          )
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.mentions.length == 0
+      ? _c("div", { staticClass: "card mb-2 weibo-mention-card" }, [
+          _c("div", { staticClass: "card-body" }, [
+            _c("p", { staticClass: "card-text text-center font-weight-bold" }, [
+              _vm._v("No Weibo Mentions")
+            ])
+          ])
+        ])
+      : _vm._e()
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-77403aba", module.exports)
+  }
+}
+
+/***/ }),
+/* 125 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _lodash = __webpack_require__(41);
+
+var _localStorage = __webpack_require__(126);
+
+exports.default = {
+    watch: {
+        '$data': {
+            handler: function handler() {
+                this.saveState();
+            },
+
+            deep: true
+        }
+    },
+
+    created: function created() {
+        this.loadState();
+    },
+
+
+    methods: {
+        loadState: function loadState() {
+            var _this = this;
+
+            var savedState = (0, _localStorage.getSavedState)(this.getSaveStateConfig().cacheKey);
+
+            if (!savedState) {
+                return;
+            }
+
+            (0, _lodash.forEach)(savedState, function (value, key) {
+
+                if (_this.attributeIsManagedBySaveState(key)) {
+                    if (_this.getSaveStateConfig().onLoad) {
+                        value = _this.getSaveStateConfig().onLoad(key, value);
+                    }
+
+                    _this.$data[key] = value;
+                }
+            });
+        },
+        saveState: function saveState() {
+            var _this2 = this;
+
+            var data = (0, _lodash.pickBy)(this.$data, function (value, attribute) {
+                return _this2.attributeIsManagedBySaveState(attribute);
+            });
+
+            (0, _localStorage.saveState)(this.getSaveStateConfig().cacheKey, data);
+        },
+        attributeIsManagedBySaveState: function attributeIsManagedBySaveState(attribute) {
+            if (this.getSaveStateConfig().ignoreProperties && this.getSaveStateConfig().ignoreProperties.indexOf(attribute) !== -1) {
+
+                return false;
+            }
+
+            if (!this.getSaveStateConfig().saveProperties) {
+                return true;
+            }
+
+            return this.getSaveStateConfig().saveProperties.indexOf(attribute) !== -1;
+        },
+        clearSavedState: function clearSavedState() {
+            (0, _localStorage.clearSavedState)(this.getSaveStateConfig().cacheKey);
+        }
+    }
+};
+
+/***/ }),
+/* 126 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.saveState = saveState;
+exports.getSavedState = getSavedState;
+exports.clearSavedState = clearSavedState;
+function saveState(key, data) {
+    localStorage.setItem(key, JSON.stringify(data));
+}
+
+function getSavedState(key) {
+    var savedState = localStorage.getItem(key);
+
+    return savedState ? JSON.parse(savedState) : null;
+}
+
+function clearSavedState(key) {
+    localStorage.removeItem(key);
+}
 
 /***/ })
 /******/ ]);
