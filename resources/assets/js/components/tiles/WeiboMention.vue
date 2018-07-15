@@ -1,12 +1,10 @@
 <template>
-    <tile :position="3">
+    <tile :position="2">
         <div class="card" v-if="mentions.length > 0">
-            <div class="card-body">
-            <h5 class="card-title text-center">
-                <img src="./img/weibo-logo.jpg" alt="weibo">
+            <div class="card-header">
                 微博@
-
-            </h5>
+            </div>
+            <div class="card-body">
         <transition-group name="card" tag="ul" class="list-group list-group-flush">
 
                 <li class="list-group-item" :key="mention.mid"  v-for="mention in mentions">
@@ -16,7 +14,7 @@
                         </div>
                         <div class="col-sm-10">
                             <h5>{{ mention.username }} <small class="ml-2 text-muted">@{{ mention.location}}</small></h5>
-                            <p>{{ mention.text }}</p>
+                            <p class="weibo-mentions-text">{{ mention.text }}</p>
                             <a :href="parseLink(mention.source)" target="_blank">微博来源</a>
                         </div>
                     </div>
@@ -80,6 +78,9 @@
 <style>
     .weibo-mention-card{
         min-height: 100px;
+    }
+    .weibo-mentions-text{
+        font-size: 0.75rem;
     }
 </style>
 <style scoped>

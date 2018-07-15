@@ -1,7 +1,7 @@
 <template>
-    <div class="container dashboard-box">
+    <div class="container-fluid dashboard-box">
         <div class="row">
-            <approval></approval>
+            <toutiao-news></toutiao-news>
             <weibo-mentions></weibo-mentions>
         </div>
     </div>
@@ -10,6 +10,7 @@
 <script>
     import Approval from './tiles/Approval.vue';
     import WeiboMentions from './tiles/WeiboMention.vue';
+    import ToutiaoNews from './tiles/ToutiaoNews.vue';
     export default {
         name:'Dashboard',
         mounted() {
@@ -17,7 +18,8 @@
         },
         components:{
             Approval,
-            WeiboMentions
+            WeiboMentions,
+            ToutiaoNews
         }
     }
 </script>

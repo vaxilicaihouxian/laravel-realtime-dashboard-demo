@@ -51195,6 +51195,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__tiles_Approval_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__tiles_Approval_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__tiles_WeiboMention_vue__ = __webpack_require__(100);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__tiles_WeiboMention_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__tiles_WeiboMention_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__tiles_ToutiaoNews_vue__ = __webpack_require__(127);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__tiles_ToutiaoNews_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__tiles_ToutiaoNews_vue__);
 //
 //
 //
@@ -51204,6 +51206,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
 
 
 
@@ -51215,7 +51218,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     components: {
         Approval: __WEBPACK_IMPORTED_MODULE_0__tiles_Approval_vue___default.a,
-        WeiboMentions: __WEBPACK_IMPORTED_MODULE_1__tiles_WeiboMention_vue___default.a
+        WeiboMentions: __WEBPACK_IMPORTED_MODULE_1__tiles_WeiboMention_vue___default.a,
+        ToutiaoNews: __WEBPACK_IMPORTED_MODULE_2__tiles_ToutiaoNews_vue___default.a
     }
 });
 
@@ -51400,7 +51404,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
         getTileClass: function getTileClass() {
             if (this.position) {
-                return 'col-md-' + this.position * 2;
+                return 'col-md-' + this.position * 3;
             }
             return 'col-md-4';
         }
@@ -56634,7 +56638,7 @@ exports = module.exports = __webpack_require__(6)(false);
 
 
 // module
-exports.push([module.i, "\n.weibo-mention-card{\n    min-height: 100px;\n}\n", ""]);
+exports.push([module.i, "\n.weibo-mention-card{\n    min-height: 100px;\n}\n.weibo-mentions-text{\n    font-size: 0.75rem;\n}\n", ""]);
 
 // exports
 
@@ -56650,8 +56654,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__lib_SocketClient__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue_save_state__ = __webpack_require__(125);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue_save_state___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_vue_save_state__);
-//
-//
 //
 //
 //
@@ -56739,11 +56741,11 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container dashboard-box" }, [
+  return _c("div", { staticClass: "container-fluid dashboard-box" }, [
     _c(
       "div",
       { staticClass: "row" },
-      [_c("approval"), _vm._v(" "), _c("weibo-mentions")],
+      [_c("toutiao-news"), _vm._v(" "), _c("weibo-mentions")],
       1
     )
   ])
@@ -56834,7 +56836,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: "Nav",
-    props: ['notifications', 'countNotifications'],
+    props: ['notifications', 'countNotifications', 'hasBox'],
     components: {
         NotificationBox: __WEBPACK_IMPORTED_MODULE_0__NotificationBox_vue___default.a
     }
@@ -57000,41 +57002,39 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    _c(
-      "nav",
-      { staticClass: "navbar navbar-expand-lg navbar-light navbar-laravel" },
-      [
-        _vm._m(0),
-        _vm._v(" "),
-        _c("a", { staticClass: "navbar-brand", attrs: { href: "#" } }, [
-          _vm._v("Dashboard")
-        ]),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass: "collapse navbar-collapse",
-            attrs: { id: "navbarDashboard" }
-          },
-          [
-            _c(
-              "div",
-              { staticClass: "ml-auto" },
-              [
-                _c("notification-box", {
-                  attrs: {
-                    data: _vm.notifications,
-                    total: _vm.countNotifications
-                  }
-                })
-              ],
-              1
-            )
-          ]
-        )
-      ]
-    )
+  return _c("div", { staticClass: "container-fluid p-0" }, [
+    _c("nav", { staticClass: "navbar navbar-expand-lg navbar-dark bg-dark" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("a", { staticClass: "navbar-brand", attrs: { href: "#" } }, [
+        _vm._v("Dashboard")
+      ]),
+      _vm._v(" "),
+      _vm.hasBox
+        ? _c(
+            "div",
+            {
+              staticClass: "collapse navbar-collapse",
+              attrs: { id: "navbarDashboard" }
+            },
+            [
+              _c(
+                "div",
+                { staticClass: "ml-auto" },
+                [
+                  _c("notification-box", {
+                    attrs: {
+                      data: _vm.notifications,
+                      total: _vm.countNotifications
+                    }
+                  })
+                ],
+                1
+              )
+            ]
+          )
+        : _vm._e()
+    ])
   ])
 }
 var staticRenderFns = [
@@ -57291,12 +57291,7 @@ if (false) {
 /* 118 */,
 /* 119 */,
 /* 120 */,
-/* 121 */
-/***/ (function(module, exports) {
-
-module.exports = "/images/weibo-logo.jpg?ba21529f5662359db53f1b3759e22d61";
-
-/***/ }),
+/* 121 */,
 /* 122 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -57344,20 +57339,17 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("tile", { attrs: { position: 3 } }, [
+  return _c("tile", { attrs: { position: 2 } }, [
     _vm.mentions.length > 0
       ? _c("div", { staticClass: "card" }, [
+          _c("div", { staticClass: "card-header" }, [
+            _vm._v("\n            微博@\n        ")
+          ]),
+          _vm._v(" "),
           _c(
             "div",
             { staticClass: "card-body" },
             [
-              _c("h5", { staticClass: "card-title text-center" }, [
-                _c("img", {
-                  attrs: { src: __webpack_require__(121), alt: "weibo" }
-                }),
-                _vm._v("\n            微博@\n\n        ")
-              ]),
-              _vm._v(" "),
               _c(
                 "transition-group",
                 {
@@ -57385,7 +57377,9 @@ var render = function() {
                             ])
                           ]),
                           _vm._v(" "),
-                          _c("p", [_vm._v(_vm._s(mention.text))]),
+                          _c("p", { staticClass: "weibo-mentions-text" }, [
+                            _vm._v(_vm._s(mention.text))
+                          ]),
                           _vm._v(" "),
                           _c(
                             "a",
@@ -57534,6 +57528,284 @@ function getSavedState(key) {
 
 function clearSavedState(key) {
     localStorage.removeItem(key);
+}
+
+/***/ }),
+/* 127 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(128)
+}
+var normalizeComponent = __webpack_require__(3)
+/* script */
+var __vue_script__ = __webpack_require__(130)
+/* template */
+var __vue_template__ = __webpack_require__(131)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/tiles/ToutiaoNews.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-023f827f", Component.options)
+  } else {
+    hotAPI.reload("data-v-023f827f", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 128 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(129);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(7)("b8df0070", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-023f827f\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ToutiaoNews.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-023f827f\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ToutiaoNews.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 129 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(6)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.toutiao-news-card{\n   min-height:200px;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 130 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Tile_vue__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Tile_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Tile_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__lib_SocketClient__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue_save_state__ = __webpack_require__(125);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue_save_state___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_vue_save_state__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    name: 'ToutiaoNews',
+    mounted: function mounted() {
+        var _this = this;
+
+        var socket = __WEBPACK_IMPORTED_MODULE_1__lib_SocketClient__["a" /* default */];
+        socket.on('dashboard:toutiao.news', function (data) {
+            _this.articles = data.news;
+        });
+        socket.on('error', function (err) {
+            console.error(err);
+            socket.disconnect();
+        });
+    },
+    data: function data() {
+        return {
+            articles: []
+        };
+    },
+
+    methods: {
+        getSaveStateConfig: function getSaveStateConfig() {
+            return {
+                'cacheKey': 'dashboard-toutiao-news'
+            };
+        }
+    },
+    mixins: [__WEBPACK_IMPORTED_MODULE_2_vue_save_state___default.a],
+    components: {
+        Tile: __WEBPACK_IMPORTED_MODULE_0__Tile_vue___default.a
+    }
+});
+
+/***/ }),
+/* 131 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("tile", { attrs: { position: 1 } }, [
+    _c("div", { staticClass: "card" }, [
+      _c("div", { staticClass: "card-header" }, [
+        _vm._v("\n         新闻\n      ")
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "card-body" },
+        [
+          _c(
+            "transition-group",
+            { attrs: { name: "card", tag: "div" } },
+            _vm._l(_vm.articles, function(article) {
+              return _vm.articles.length > 0
+                ? _c(
+                    "div",
+                    {
+                      key: article.itemId,
+                      staticClass: "card mb-2 toutiao-news-card"
+                    },
+                    [
+                      _c("div", { staticClass: "card-body" }, [
+                        _c("h5", {}, [_vm._v(_vm._s(article.title))]),
+                        _vm._v(" "),
+                        _c("h6", { staticClass: "text-subtitle text-muted" }, [
+                          _vm._v(
+                            _vm._s(article.mediaName) +
+                              "\n                     "
+                          ),
+                          _c("span", { staticClass: "float-right" }, [
+                            _vm._v(_vm._s(article.datetime))
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "text-center p-2" },
+                          _vm._l(article.imageList, function(img) {
+                            return _c("img", {
+                              staticClass: "img-fluid mb-2",
+                              attrs: { src: img.url, alt: "news-pic" }
+                            })
+                          })
+                        ),
+                        _vm._v(" "),
+                        _c("p", { staticClass: "card-text" }, [
+                          _vm._v(_vm._s(article.abstract))
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "card-footer" }, [
+                        _c(
+                          "a",
+                          {
+                            attrs: {
+                              href: article.displayUrl,
+                              target: "_blank"
+                            }
+                          },
+                          [_vm._v("详细链接")]
+                        )
+                      ])
+                    ]
+                  )
+                : _vm._e()
+            })
+          ),
+          _vm._v(" "),
+          _vm.articles.length == 0
+            ? _c("div", { staticClass: "card mb-2 toutiao-news-card" }, [
+                _c("div", { staticClass: "card-body" }, [
+                  _c(
+                    "p",
+                    { staticClass: "card-text text-center font-weight-bold" },
+                    [_vm._v("No News")]
+                  )
+                ])
+              ])
+            : _vm._e()
+        ],
+        1
+      )
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-023f827f", module.exports)
+  }
 }
 
 /***/ })

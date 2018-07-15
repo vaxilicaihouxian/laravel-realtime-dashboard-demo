@@ -14,9 +14,7 @@
 </head>
 <body>
     <div id="app">
-        <nav-tile :notifications="{{ getUnreadNotifications() }}"
-                  :count-notifications="{{ countUnreadNotifications() }}"
-                  :user="{{ Auth::check() ? Auth::user()->toJson() : false }}"></nav-tile>
+        <nav-tile :hasBox="false"></nav-tile>
         <main class="py-4">
         <dashboard></dashboard>
         <flash-message></flash-message>

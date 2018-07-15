@@ -5,21 +5,21 @@ namespace App\Events\Dashboard\Weibo;
 use App\Events\Dashboard\PublicDashboardEvent;
 
 
-class MentionsEvent extends PublicDashboardEvent
+class ToutiaoNewsEvent extends PublicDashboardEvent
 {
-    public $mentions;
+    public $news;
 
     /**
      * Create a new event instance.
-     * @param $mentions
+     * @param $news
      */
-    public function __construct($mentions)
+    public function __construct($news)
     {
-        $this->mentions = $mentions;
+        $this->news = $news;
     }
 
     public function broadcastAs()
     {
-        return 'weibo.mentions';
+        return 'toutiao.news';
     }
 }
