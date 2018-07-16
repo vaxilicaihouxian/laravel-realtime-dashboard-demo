@@ -1,11 +1,11 @@
 <template>
-      <div class="card h-100">
+      <div class="card h-100 card-shadow">
          <div class="card-header">
             新闻
          </div>
          <div class="card-body overflow-scroll-auto">
             <transition-group name="card" tag="div">
-               <div class="card mb-2 toutiao-news-card" :key="article.itemId" v-if="articles.length > 0" v-for="article in articles">
+               <div class="card mb-2 toutiao-news-card card-shadow" :key="article.itemId" v-if="articles.length > 0" v-for="article in articles">
                   <div class="card-body">
                      <h5 class="">{{ article.title }}</h5>
                      <h6 class="text-subtitle text-muted">{{ article.mediaName }}
@@ -68,6 +68,5 @@
 <style>
    .toutiao-news-card{
       min-height:200px;
-
    }
 </style>

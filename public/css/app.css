@@ -10487,3 +10487,9 @@ body {
   overflow-y: auto;
 }
 
+.card-shadow {
+  border: none;
+  -webkit-box-shadow: 0 0 0.5em 0.5em #d3e0e9;
+          box-shadow: 0 0 0.5em 0.5em #d3e0e9;
+}
+

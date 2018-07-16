@@ -3,7 +3,7 @@
             <tile :position="1">
                 <toutiao-news></toutiao-news>
             </tile>
-            <tile :position="2">
+            <tile :position="1">
                 <weibo-mentions></weibo-mentions>
             </tile>
             <tile :position="1">

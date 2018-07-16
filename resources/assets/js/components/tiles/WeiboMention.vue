@@ -1,5 +1,5 @@
 <template>
-        <div class="card h-100">
+        <div class="card h-100 card-shadow">
             <div class="card-header">
                 微博@
             </div>
@@ -9,12 +9,13 @@
                 <li class="list-group-item" :key="mention.mid"  v-for="mention in mentions">
                     <div class="row">
                         <div class="col-sm-2">
-                            <img :src="mention.avatar" class="border border-light rounded-circle" alt="avatar">
+                            <img :src="mention.avatar" class="border border-light rounded-circle avatar" alt="avatar">
                         </div>
                         <div class="col-sm-10">
-                            <h5>{{ mention.username }} <small class="ml-2 text-muted">@{{ mention.location}}</small></h5>
+                            <h5>{{ mention.username }} <span class="ml-2 float-right text-muted location">@{{ mention.location}}</span> </h5>
+
                             <p class="weibo-mentions-text">{{ mention.text }}</p>
-                            <a :href="parseLink(mention.source)" target="_blank">微博来源</a>
+                            <a :href="parseLink(mention.source)" class="float-right" target="_blank">微博来源</a>
                         </div>
                     </div>
                 </li>
@@ -79,5 +80,17 @@
     .list-group-item{
         padding-left: 0;
         padding-right: 0;
+    }
+    .avatar{
+        width:2.2rem;
+    }
+    .location{
+        font-size:0.5rem;
+        margin-bottom:0;
+    }
+    h5{
+        font-size:1rem;
+        display: inline-flex;
+        align-items: center;
     }
 </style>

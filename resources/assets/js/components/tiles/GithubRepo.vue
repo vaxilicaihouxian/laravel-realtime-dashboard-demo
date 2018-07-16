@@ -1,5 +1,5 @@
 <template>
-        <div class="card">
+        <div class="card card-shadow">
            <div class="card-header">Github Repo</div>
             <div class="card-body">
                 <h5 class="card-title">{{ repo.name}}</h5>
