@@ -2,8 +2,10 @@
 
 namespace App\Console;
 
+use App\Console\Commands\Dashboard\Github\Repository;
 use App\Console\Commands\Dashboard\Toutiao\News;
 use App\Console\Commands\Dashboard\Weibo\Mentions;
+use App\Services\Github;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -17,6 +19,7 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         Mentions::class,
         News::class,
+        Repository::class
     ];
 
     /**
