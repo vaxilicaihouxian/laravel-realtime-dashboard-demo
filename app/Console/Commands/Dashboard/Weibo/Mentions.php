@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands\Dashboard\Weibo;
 
-use App\Events\Dashboard\Weibo\MentionsEvent;
+use App\Events\Dashboard\Events\MentionsEvent;
 use App\Services\Weibo;
 use Illuminate\Console\Command;
 

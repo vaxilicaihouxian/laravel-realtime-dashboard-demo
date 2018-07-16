@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Events\Dashboard\Weibo;
+namespace App\Events\Dashboard\Events;
 
 use App\Events\Dashboard\PublicDashboardEvent;
 

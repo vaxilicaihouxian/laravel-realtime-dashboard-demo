@@ -15,7 +15,7 @@
 <body>
     <div id="app">
         <nav-tile :hasBox="false"></nav-tile>
-        <main class="py-4">
+        <main class="dashboard-box mt-2">
         <dashboard></dashboard>
         <flash-message></flash-message>
         </main>

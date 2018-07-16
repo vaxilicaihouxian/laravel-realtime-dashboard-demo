@@ -32,6 +32,8 @@ class Kernel extends ConsoleKernel
     {
          $schedule->command('dashboard:weibo-mentions')
                   ->everyMinute();
+        $schedule->command('dashboard:toutiao-news')
+            ->everyMinute();
     }
 
     /**

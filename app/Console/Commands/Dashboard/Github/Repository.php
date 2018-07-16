@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands\Dashboard\Github;
 
+use App\Events\Dashboard\Events\GithubRepoEvent;
 use App\Services\Github;
 use Illuminate\Console\Command;
 
@@ -19,15 +20,15 @@ class Repository extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Get A Repo from github api';
 
     /**
      * Execute the console command.
      *
-     * @return mixed
+     * @param Github $github
      */
     public function handle(Github $github)
     {
-        dd($github->fetchResult());
+        broadcast(new GithubRepoEvent($github->fetchResult()));
     }
 }

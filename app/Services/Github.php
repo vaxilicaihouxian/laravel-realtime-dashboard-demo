@@ -32,11 +32,17 @@ class Github
     public function fetchResult()
     {
         $username = env('GITHUB_API_USERNAME');
-        return (new ResultPager($this->client))->fetchAll(
-            $this->client->api('organization'),
-            'repositories',
-            [$username]
-        );
-
+        $repoName = env('GITHUB_API_REPO');
+        $repo = ($this->client->api('repo')->show($username,$repoName));
+        $data = [
+            'name'=>$repo['name'],
+            'url'=>$repo['html_url'],
+            'avatar'=>$repo['owner']['avatar_url'],
+            'issues'=>$repo['open_issues_count'],
+            'stars'=>$repo['stargazers_count'],
+            'ownerName'=>$repo['owner']['login'],
+            'forks'=>$repo['forks_count']
+        ];
+        return $data;
     }
 }

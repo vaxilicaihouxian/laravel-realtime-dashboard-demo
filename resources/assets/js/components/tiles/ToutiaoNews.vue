@@ -1,10 +1,9 @@
 <template>
-   <tile :position="1">
-      <div class="card">
+      <div class="card h-100">
          <div class="card-header">
             新闻
          </div>
-         <div class="card-body">
+         <div class="card-body overflow-scroll-auto">
             <transition-group name="card" tag="div">
                <div class="card mb-2 toutiao-news-card" :key="article.itemId" v-if="articles.length > 0" v-for="article in articles">
                   <div class="card-body">
@@ -30,11 +29,9 @@
          </div>
       </div>
 
-   </tile>
 
 </template>
 <script>
-    import Tile from '../Tile.vue';
     import SocketClient from '../../lib/SocketClient';
     import saveState from 'vue-save-state';
    export default{
@@ -65,7 +62,6 @@
            saveState
        ],
        components:{
-           Tile
        }
    }
 </script>

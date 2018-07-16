@@ -1,10 +1,9 @@
 <template>
-    <tile :position="2">
-        <div class="card" v-if="mentions.length > 0">
+        <div class="card h-100">
             <div class="card-header">
                 微博@
             </div>
-            <div class="card-body">
+            <div class="card-body overflow-scroll-auto" v-if="mentions.length>0">
         <transition-group name="card" tag="ul" class="list-group list-group-flush">
 
                 <li class="list-group-item" :key="mention.mid"  v-for="mention in mentions">
@@ -21,18 +20,12 @@
                 </li>
         </transition-group>
             </div>
+            <div class="card-body" v-else>No data</div>
 
         </div>
 
-        <div class="card mb-2 weibo-mention-card" v-if="mentions.length == 0">
-            <div class="card-body">
-                <p class="card-text text-center font-weight-bold">No Weibo Mentions</p>
-            </div>
-        </div>
-    </tile>
 </template>
 <script>
-    import Tile from '../Tile.vue';
     import SocketClient from '../../lib/SocketClient';
     import saveState from 'vue-save-state';
     export default{
@@ -71,7 +64,6 @@
             }
         },
         components:{
-            Tile
         }
     }
 </script>

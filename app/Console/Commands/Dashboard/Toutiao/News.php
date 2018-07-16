@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands\Dashboard\Toutiao;
 
-use App\Events\Dashboard\Weibo\ToutiaoNewsEvent;
+use App\Events\Dashboard\Events\ToutiaoNewsEvent;
 use App\Services\Toutiao;
 use Illuminate\Console\Command;
 

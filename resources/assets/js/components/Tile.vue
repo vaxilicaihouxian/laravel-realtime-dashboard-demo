@@ -1,5 +1,5 @@
 <template>
-    <div :class="getTileClass()">
+    <div :class="getTileClass()" class="tile">
         <slot></slot>
     </div>
 </template>
@@ -11,9 +11,9 @@
         methods:{
             getTileClass(){
                 if(this.position){
-                    return 'col-md-'+ this.position*3;
+                    return 'col-sm-'+ this.position*3;
                 }
-                return 'col-md-4';
+                return 'col-sm-4';
             }
         }
     }
