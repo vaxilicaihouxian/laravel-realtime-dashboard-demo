@@ -34,6 +34,8 @@ class Kernel extends ConsoleKernel
                   ->everyMinute();
         $schedule->command('dashboard:toutiao-news')
             ->everyMinute();
+        $schedule->command('dashboard:github-repo')
+            ->everyFiveMinutes();
     }
 
     /**
