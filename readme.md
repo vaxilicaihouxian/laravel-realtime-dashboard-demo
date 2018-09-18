@@ -1,4 +1,4 @@
-License:MIT
+License: MIT
 
 # Laravel Real Time Dashboard Demo
 
