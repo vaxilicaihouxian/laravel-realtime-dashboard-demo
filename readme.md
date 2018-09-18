@@ -1,5 +1,5 @@
-License:MIT
-
+License: MIT
+Author: MCC
 # Laravel Real Time Dashboard Demo
 
 ## Lesson 1
