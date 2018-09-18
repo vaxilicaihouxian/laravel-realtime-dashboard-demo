@@ -6,6 +6,7 @@ Author: MCC
 
 1. 准备环境:
 
+
 php7,laravel-framework,mysql,redis,socket.io
 
 2. 构建实时控制面板的基本思路
